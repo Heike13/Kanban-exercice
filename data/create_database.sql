@@ -1,3 +1,5 @@
-CREATE USER okanban WITH PASSWORD 'okanban';
 
-CREATE DATABASE okanban OWNER okanban;
+DROP DATABASE IF EXISTS okanban;
+DROP USER IF EXISTS okanban;
+CREATE USER okanban WITH PASSWORD 'okanban';
+CREATE DATABASE okanban WITH OWNER okanban;
