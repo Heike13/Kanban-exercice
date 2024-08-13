@@ -16,6 +16,7 @@ class FetchClass {
         this.data = new FormData();
         this.token = token;
         this.headers = new Map([
+            ['x-csrf-token', `${this.token}`],
             ['Content-Type', 'application/json'],
             ['credentials', 'include'],
             ['mode', 'cors'],
@@ -30,7 +31,7 @@ class FetchClass {
      */
     make(method = 'GET') {
         if (!(method in this.#methods)) {
-            throw new Error('Houston, on a un probleme');
+            throw new Error('HTTP method not allowed on fetch');
         }
 
         this.req = new Request(this.url, { method: this.#methods[method] });
