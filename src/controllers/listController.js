@@ -3,6 +3,9 @@ import sanitize from 'sanitize-html';
 import Joi from 'joi';
 
 const listController = {
+    /** INDEX is a RESTful method
+     * find all lists with their cards and tags
+     */
     async index(req, res) {
         const lists = await List.findAll({
             include: {
@@ -18,6 +21,9 @@ const listController = {
         res.json(lists);
     },
 
+    /** SHOW is a RESTful method
+     * find a list with its cards and tags
+     */
     async show(req, res) {
         const listId = Number.parseInt(req.params.id, 10);
         const list = await List.findByPk(listId, {
@@ -29,6 +35,9 @@ const listController = {
         res.json(list);
     },
 
+    /** STORE is a RESTful method
+     * create a new list
+     */
     async store(req, res) {
         let { title, position } = req.body;
 
@@ -49,6 +58,9 @@ const listController = {
         res.json(newList);
     },
 
+    /** UPDATE is a RESTful method
+     * update a list with its cards and tags
+     */
     async update(req, res) {
         const { id } = req.params;
         const { title, position } = req.body;
@@ -75,6 +87,9 @@ const listController = {
         return res.json(updatedList);
     },
 
+    /** DESTROY is a RESTful method
+     * delete a list with its cards and tags
+     */
     async destroy(req, res) {
         const id = Number.parseInt(req.params.id, 10);
 
@@ -96,12 +111,11 @@ const listController = {
 
 /**
  * This fonction check if value is defined and not an integer
- *
  * @param {int} value
  * @returns Boolean
  */
 function isDefinedButNotInt(value) {
-    // value has to be defined, integer and > than 0
+    // value has to be defined, integer and greater than 0
     return value !== undefined && (!Number.isInteger(value) || value <= 0);
 }
 

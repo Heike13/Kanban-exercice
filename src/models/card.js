@@ -1,5 +1,5 @@
 import { Model, DataTypes } from 'sequelize';
-import { getConnexion } from './sequelizeClient.js';
+import { getConnexion } from '../db/sequelizeClient.js';
 
 class Card extends Model {}
 
