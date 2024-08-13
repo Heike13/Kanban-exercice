@@ -1,4 +1,4 @@
-// BONUS : factorisation du try/catch
+// Desc: Wrapper for controller methods to catch errors and send a 500 status code with a JSON response.
 export function controllerWrapper(controllerMethod) {
     return async (req, res, next) => {
         try {

@@ -16,7 +16,7 @@ class FetchClass {
         this.data = new FormData();
         this.token = token;
         this.headers = new Map([
-            ['x-csrf-token', `${this.token}`],
+            // ['x-csrf-token', `${this.token}`],
             ['Content-Type', 'application/json'],
             ['credentials', 'include'],
             ['mode', 'cors'],

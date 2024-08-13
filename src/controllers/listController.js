@@ -101,7 +101,7 @@ const listController = {
  * @returns Boolean
  */
 function isDefinedButNotInt(value) {
-    // value has to be defined, integer and greater than 0
+    // value has to be defined, integer and > than 0
     return value !== undefined && (!Number.isInteger(value) || value <= 0);
 }
 
