@@ -3,6 +3,31 @@ import sanitize from 'sanitize-html';
 import Joi from 'joi';
 
 const listController = {
+    /** SHOW is a RESTful method
+     *  action : find a list with its cards and tags
+     */
+    async show(req, res) {
+        try {
+            // get the id from the URL and convert it to an integer
+            // (the second argument of parseInt is the radix, 10 for decimal)
+            const listId = Number.parseInt(req.params.id, 10);
+            const list = await List.findByPk(listId, {
+                include: {
+                    association: 'cards',
+                    include: 'tags',
+                },
+            });
+            if (!list) {
+                return res.status(404).json({ error: 'List not found' });
+            }
+
+            return res.json(list);
+        } catch (error) {
+            console.error('Error when fetching list', error);
+            return res.status(500).json({ error: 'Internal server error' });
+        }
+    },
+
     /** INDEX is a RESTful method
      * find all lists with their cards and tags
      */
@@ -19,20 +44,6 @@ const listController = {
             ],
         });
         res.json(lists);
-    },
-
-    /** SHOW is a RESTful method
-     * find a list with its cards and tags
-     */
-    async show(req, res) {
-        const listId = Number.parseInt(req.params.id, 10);
-        const list = await List.findByPk(listId, {
-            include: {
-                association: 'cards',
-                include: 'tags',
-            },
-        });
-        res.json(list);
     },
 
     /** STORE is a RESTful method

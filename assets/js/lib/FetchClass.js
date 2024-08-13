@@ -16,7 +16,6 @@ class FetchClass {
         this.data = new FormData();
         this.token = token;
         this.headers = new Map([
-            // ['x-csrf-token', `${this.token}`],
             ['Content-Type', 'application/json'],
             ['credentials', 'include'],
             ['mode', 'cors'],
@@ -26,7 +25,7 @@ class FetchClass {
     }
 
     /**
-     * @param method 
+     * @param method
      * @returns {FetchClass}
      */
     make(method = 'GET') {

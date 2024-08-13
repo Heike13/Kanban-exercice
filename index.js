@@ -12,7 +12,7 @@ const app = express();
 
 const { generateToken, validateRequest, doubleCsrfProtection } = doubleCsrf({
     getSecret: () => process.env.TOKEN_SECRET,
-    cookieName: '__Host-psifi.x-csrf-token',
+    cookieName: 'x-csrf-token',
     cookieOptions: {
         sameSite: 'strict',
         path: '/',
@@ -27,8 +27,8 @@ app.use(express.static('./dist'));
 app.use(cors(corsOptions));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use(doubleCsrfProtection);
 app.use(cookieParser());
+app.use(doubleCsrfProtection);
 app.use(limiter);
 app.use(xssMiddleware);
 
