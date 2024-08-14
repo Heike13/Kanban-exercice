@@ -1,5 +1,4 @@
 import { Router } from 'express';
-
 import { router as listRouter } from './listRouter.js';
 import { router as cardRouter } from './cardRouter.js';
 import { router as tagRouter } from './tagRouter.js';
