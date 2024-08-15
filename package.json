@@ -9,7 +9,7 @@
         "dev": "nodemon index.js",
         "dev:front": "vite",
         "build:front": "vite build",
-        "tests": "jest"
+        "tests": "vitest"
     },
     "keywords": [],
     "author": "",
@@ -18,6 +18,7 @@
         "@babel/core": "^7.25.2",
         "@babel/preset-env": "^7.25.3",
         "@babel/preset-react": "^7.24.7",
+        "@types/node": "^22.3.0",
         "babel-jest": "^29.7.0",
         "eslint": "^8.57.0",
         "eslint-plugin-import": "^2.29.1",

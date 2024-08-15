@@ -45,19 +45,13 @@ describe('xssMiddleware', () => {
         expect(response.status).toBe(200);
         expect(response.body).toEqual(cleanedQuery);
     });
-
     it('should clean malicious entries for req.params', async () => {
         const maliciousParams = '<script>alert("xss")</script>';
-        const encodedParams = encodeURIComponent(maliciousParams); // Encode special characters
         const cleanedParams = '&lt;script&gt;alert("xss")&lt;/script&gt;';
 
-        const response = await request(app).get(`/test/${encodedParams}`);
-
-        // Décoder la valeur de `name` dans la réponse avant comparaison
-        const decodedResponseBody = JSON.parse(JSON.stringify(response.body));
-        decodedResponseBody.name = decodeURIComponent(decodedResponseBody.name);
+        const response = await request(app).get(`/test/${maliciousParams}`);
 
         expect(response.status).toBe(200);
-        expect(decodedResponseBody).toEqual({ name: cleanedParams });
+        expect(response.body).toEqual({ name: cleanedParams });
     });
 });
