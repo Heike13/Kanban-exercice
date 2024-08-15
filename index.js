@@ -27,6 +27,7 @@ app.use(doubleCsrfProtection);
 app.use(limiter);
 app.use(xssMiddleware);
 
+
 // Route to get the CSRF token
 app.get('/token', (req, res) => {
     if (!req.headers['x-csrf-token']) {
